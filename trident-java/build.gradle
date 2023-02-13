@@ -18,7 +18,7 @@ allprojects {
 
 subprojects {
     apply plugin: 'java'
-    apply plugin: 'maven'
+//    apply plugin: 'maven'
     apply plugin: 'maven-publish'
 
     java {
@@ -29,7 +29,13 @@ subprojects {
     dependencies {
         testImplementation "org.junit.jupiter:junit-jupiter:$junitJupiterVersion"
     }
-
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+            }
+        }
+    }
     test {
         useJUnitPlatform()
         testLogging {
